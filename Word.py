@@ -47,6 +47,6 @@ def guess_secret_word(words):
             break
 
 if __name__ == "__main__":
-    words_input = input("Enter a space list of words to guess: ").strip().lower()
+    words_input = input("Enter a space-separated list of words to guess: ").strip().lower()
     words_to_guess = [word.strip() for word in words_input.split(' ')]
     guess_secret_word(words_to_guess[:])  # Pass a copy of the list to preserve the original list
