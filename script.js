@@ -43,7 +43,7 @@ function makeGuess() {
     if (possibleWords.length === 1 && possibleWords[0] === secretWord) {
         document.getElementById("output-container").innerHTML += `<br><strong>The secret word is: ${secretWord}</strong><br>Congratulations! You guessed the word.`;
     }
-    document.getElementById("guessed-word-input").value ="";
+    document.getElementById("guessed-word-input").value = "";
     document.getElementById("correct-letters-input").value = "";
 }
 
