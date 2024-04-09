@@ -88,6 +88,7 @@ function exitGame() {
     document.getElementById("output-container").innerHTML = "";
     document.getElementById("game-container").style.display = "block";
     document.getElementById("guess-container").style.display = "none";
+    gameHasStarted = false;
 }
 
 function countMatchingLetters(secretWord, guessedWord) {
