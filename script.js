@@ -2,6 +2,7 @@ let secretWord = "";
 let guessedWords = [];
 let words = []; // Define the 'words' variable at the global level
 let possibleWords = [];
+let gameHasStarted = false;
 
 function startGame() {
     secretWord = document.getElementById("secret-word-input").value.trim().toLowerCase();
@@ -32,6 +33,7 @@ function startGame() {
         option.text = words[i];
         guessedWordInput.appendChild(option);
     }
+    gameHasStarted = true;
 }
 
 function makeGuess() {
@@ -65,7 +67,7 @@ function makeGuess() {
     document.getElementById("guessed-word-input").value = "";
     document.getElementById("correct-letters-input").value = "";
 
-    
+
     // Get the guessed-word-input element
     var guessedWordInput = document.getElementById("guessed-word-input");
 
@@ -91,3 +93,14 @@ function exitGame() {
 function countMatchingLetters(secretWord, guessedWord) {
     return [...secretWord].filter((char, index) => char === guessedWord[index]).length;
 }
+
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        // Call startGame() or makeGuess() based on your condition
+        if (gameHasStarted) {
+            makeGuess();
+        } else {
+            startGame();
+        }
+    }
+});
