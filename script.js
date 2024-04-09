@@ -1,6 +1,7 @@
 let secretWord = "";
 let guessedWords = [];
 let words = []; // Define the 'words' variable at the global level
+let possibleWords = [];
 
 function startGame() {
     secretWord = document.getElementById("secret-word-input").value.trim().toLowerCase();
@@ -13,6 +14,24 @@ function startGame() {
     document.getElementById("game-container").style.display = "none";
     document.getElementById("guess-container").style.display = "block";
     document.getElementById("output-container").innerHTML = "Game started. Begin guessing!";
+
+
+    // Get the guessed-word-input element
+    var guessedWordInput = document.getElementById("guessed-word-input");
+
+    // Change the type to a select
+    guessedWordInput.outerHTML = '<select id="guessed-word-input"></select>';
+
+    // Get the new select element
+    guessedWordInput = document.getElementById("guessed-word-input");
+
+    // Populate the select with the possible words
+    for(var i = 0; i < words.length; i++) {
+        var option = document.createElement("option");
+        option.value = words[i];
+        option.text = words[i];
+        guessedWordInput.appendChild(option);
+    }
 }
 
 function makeGuess() {
@@ -31,7 +50,7 @@ function makeGuess() {
 
     guessedWords.push(guessedWord);
 
-    const possibleWords = words.filter(word => !guessedWords.includes(word) && countMatchingLetters(word, guessedWord) === correctLetters);
+    possibleWords = words.filter(word => !guessedWords.includes(word) && countMatchingLetters(word, guessedWord) === correctLetters);
 
     let outputHtml = "Possible words based on your input:<br>";
     possibleWords.forEach(word => {
@@ -45,6 +64,22 @@ function makeGuess() {
     }
     document.getElementById("guessed-word-input").value = "";
     document.getElementById("correct-letters-input").value = "";
+
+    
+    // Get the guessed-word-input element
+    var guessedWordInput = document.getElementById("guessed-word-input");
+
+    // Change the type to a select
+    guessedWordInput.outerHTML = '<select id="guessed-word-input"></select>';
+
+    // Get the new select element
+    guessedWordInput = document.getElementById("guessed-word-input");
+    for(var i = 0; i < possibleWords.length; i++) {
+        var option = document.createElement("option");
+        option.value = possibleWords[i];
+        option.text = possibleWords[i];
+        guessedWordInput.appendChild(option);
+    }
 }
 
 function exitGame() {
